@@ -1,4 +1,4 @@
-import { Card, CardMedia } from "@mui/material";
+import { CardMedia } from "@mui/material";
 
 export const ImageBox = (props: any) => {
   const currImg = { ...props.currImage };

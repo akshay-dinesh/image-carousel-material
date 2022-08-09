@@ -1,10 +1,10 @@
 import "./App.css";
-import { Image } from "./components/image/Image";
+import { Carousel } from "./components/carousel/Carousel";
 
 function App() {
   return (
     <div className="App">
-      <Image />
+      <Carousel />
     </div>
   );
 }
