@@ -9,9 +9,10 @@ import { ImageBox } from "../imageBox/ImageBox";
 import { TextBox } from "../textBox/TextBox";
 
 // Material UI imports
-import { Box, CardMedia, Stack, IconButton, Grid } from "@mui/material";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import { Box, CardMedia, Stack, Icon, IconButton, Grid } from "@mui/material";
+import ArrowRightOutlinedIcon from "@mui/icons-material/ArrowRightOutlined";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
+import { Container } from "@mui/system";
 
 // Data import
 import { itemData } from "../../data";
@@ -27,9 +28,6 @@ export const Carousel = () => {
     return setIndex((i) => (i + 1) % itemData.length);
   };
 
-  // Function that sets timer
-  const setTimer = () => {};
-
   // Function to render image according to the index
   const renderImage = (i: any) => {
     return setCurrImage(itemData[i]);
@@ -38,9 +36,11 @@ export const Carousel = () => {
   // Hook to start carousel timer upon page load
   useEffect(() => {
     // Set Interval function for timer count
-    const timerId = setInterval(indexFunction, 3000);
-    return () => clearInterval(timerId);
-  }, []);
+    if (!carouselPause) {
+      const timerId = setInterval(indexFunction, 3000);
+      return () => clearInterval(timerId);
+    }
+  }, [carouselPause]);
 
   // Hook to update image when index changes (because of timer)
   useEffect(() => {
@@ -48,7 +48,7 @@ export const Carousel = () => {
   }, [index]);
 
   // Function to handle next/previous images
-  const arrowHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const arrowHandler = (event: React.MouseEvent<SVGSVGElement>) => {
     console.log(event.currentTarget);
     indexFunction();
   };
@@ -59,54 +59,89 @@ export const Carousel = () => {
   };
 
   return (
-    <Grid container spacing={2} m={0.5}>
-      {/* Big image component */}
-      <Grid item xs={7}>
-        <ImageBox currImage={currImage} />
-      </Grid>
+    <Container maxWidth={false}>
+      <Grid container spacing={2} mt={1}>
+        {/* Big image component */}
+        <Grid item xs={7.25}>
+          <ImageBox currImage={currImage} />
+        </Grid>
 
-      {/* Text Component */}
-      <Grid item xs={5}>
-        <TextBox currImage={currImage} />
-      </Grid>
+        {/* Text Component */}
+        <Grid item xs={4.75}>
+          <TextBox currImage={currImage} />
+        </Grid>
 
-      {/* Carousel Component */}
-      <Grid item xs={7}>
-        <Stack
-          direction="row"
-          // spacing={1}
-          // alignItems="center"
-          // justifyContent="center"
-          // sx={{ width: "1400px" }}
-        >
-          <IconButton onClick={arrowHandler}>
-            <ArrowLeftIcon />
-          </IconButton>
-          <Box sx={{ overflow: "hidden" }}>
-            <Stack direction="row" spacing={1} fontSize="large">
-              {itemData.map((item) => (
-                <CardMedia
-                  component="img"
-                  image={`${item.img}`}
-                  key={`${item.id}`}
-                  alt="unsplash image"
-                  sx={{ width: "205px", height: "171px", borderRadius: "20px" }}
+        {/* Carousel Component */}
+        <Grid item xs={7.5}>
+          <Grid container columns={16}>
+            {/* Left arrow */}
+            <IconButton
+              disableFocusRipple={true}
+              disableRipple={true}
+              size="large"
+              edge="start"
+              children={
+                <ArrowLeftIcon
+                  sx={{
+                    fontSize: "50px",
+                    color: "#000000",
+                  }}
+                  onClick={arrowHandler}
                 />
-              ))}
-            </Stack>
-          </Box>
-          <IconButton onClick={arrowHandler}>
-            <ArrowRightIcon />
-          </IconButton>
-        </Stack>
-      </Grid>
+              }
+            />
 
-      {/* Pause button Component */}
-      <Grid item xs={5}>
-        <IconButton onClick={pauseHandler}>
-          <PauseButton />
-        </IconButton>
+            {/* Carousel Box */}
+            <Box sx={{ overflow: "hidden" }}>
+              <Stack direction="row" spacing={1} fontSize="large">
+                {itemData.map((item, itemIndex) => (
+                  <CardMedia
+                    className={`${
+                      itemIndex === index ? "gray-scale-off" : "gray-scale"
+                    }`}
+                    component="img"
+                    image={`${item.img}`}
+                    key={`${item.id}`}
+                    alt="unsplash image"
+                    sx={{
+                      width: "205px",
+                      height: "171px",
+                      borderRadius: "20px",
+                    }}
+                  />
+                ))}
+              </Stack>
+            </Box>
+
+            {/* Right Arrow  */}
+            <IconButton
+              disableFocusRipple={true}
+              disableRipple={true}
+              size="large"
+              edge="end"
+              children={
+                <ArrowRightOutlinedIcon
+                  sx={{
+                    fontSize: "50px",
+                    color: "#000000",
+                  }}
+                  onClick={arrowHandler}
+                />
+              }
+            />
+          </Grid>
+        </Grid>
+
+        {/* Pause button Component */}
+        <Grid container xs={4} justifyContent="center" alignItems="center">
+          <IconButton
+            sx={{ width: "99px", height: "99px" }}
+            onClick={pauseHandler}
+          >
+            <PauseButton carouselPause={carouselPause} />
+          </IconButton>
+        </Grid>
       </Grid>
-    </Grid>
+    </Container>
   );
 };
