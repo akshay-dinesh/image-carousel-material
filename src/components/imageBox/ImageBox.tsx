@@ -19,7 +19,15 @@ export const ImageBox = (props: ImageProps) => {
       image={`${currImg.img}`}
       key={`${currImg.id}`}
       alt="unsplash image"
-      sx={{ width: "1126px", height: "768px", borderRadius: "20px" }}
+      sx={{
+        width: {
+          xl: "1126px",
+        },
+        height: {
+          xl: "768px",
+        },
+        borderRadius: "20px",
+      }}
     />
   );
 };

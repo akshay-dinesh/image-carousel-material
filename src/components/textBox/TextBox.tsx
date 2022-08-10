@@ -19,14 +19,50 @@ export const TextBox = (props: TextProps) => {
       <Typography
         className="heading-primary"
         variant="h3"
-        px={20}
-        pl={8}
-        mb={10}
+        pl={{
+          sm: 2,
+          md: 3,
+          lg: 4,
+          xl: 5,
+        }}
+        sx={{
+          fontSize: {
+            sm: "25px",
+            md: "30px",
+            lg: "35px",
+            xl: "40px",
+          },
+          textAlign: {
+            xs: "center",
+            sm: "left",
+          },
+        }}
         gutterBottom
       >
         {currImg.title}
       </Typography>
-      <Typography className="paragraph" variant="body2" px={15} pl={8}>
+      <Typography
+        className="paragraph"
+        variant="body2"
+        pl={{
+          sm: 2,
+          md: 3,
+          lg: 4,
+          xl: 5,
+        }}
+        sx={{
+          fontSize: {
+            sm: "6px",
+            md: "8.25px",
+            lg: "11px",
+            xl: "15px",
+          },
+          textAlign: {
+            xs: "center",
+            sm: "left",
+          },
+        }}
+      >
         {currImg.description}
       </Typography>
     </>

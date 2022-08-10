@@ -25,9 +25,21 @@ export const PauseButton = (props: BooleanProps) => {
     false: (
       <PauseCircleFilledIcon
         sx={{
-          fontSize: "50px",
-          width: "99px",
-          height: "99px",
+          fontSize: {
+            sm: "40px",
+            xl: "50px",
+            lg: "60px",
+          },
+          width: {
+            sm: "50px",
+            xl: "99px",
+            lg: "120px",
+          },
+          height: {
+            sm: "50px",
+            xl: "99px",
+            lg: "120px",
+          },
           color: "#25BEDA",
         }}
         onClick={pauseHandler}
@@ -36,9 +48,21 @@ export const PauseButton = (props: BooleanProps) => {
     true: (
       <PlayCircleFilledIcon
         sx={{
-          fontSize: "50px",
-          width: "99px",
-          height: "99px",
+          fontSize: {
+            sm: "40px",
+            xl: "50px",
+            lg: "60px",
+          },
+          width: {
+            sm: "50px",
+            xl: "99px",
+            lg: "120px",
+          },
+          height: {
+            sm: "50px",
+            xl: "99px",
+            lg: "120px",
+          },
           color: "#25BEDA",
         }}
         onClick={pauseHandler}
