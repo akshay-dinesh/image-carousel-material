@@ -156,7 +156,6 @@ export const Carousel = () => {
               justifyContent: {
                 xs: "center",
                 sm: "center",
-                xl: "start",
               },
               alignItems: {
                 xs: "center",

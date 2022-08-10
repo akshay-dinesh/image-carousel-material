@@ -23,7 +23,7 @@ export const TextBox = (props: TextProps) => {
           sm: 2,
           md: 3,
           lg: 4,
-          xl: 5,
+          xl: 4,
         }}
         sx={{
           fontSize: {
@@ -48,7 +48,7 @@ export const TextBox = (props: TextProps) => {
           sm: 2,
           md: 3,
           lg: 4,
-          xl: 5,
+          xl: 4,
         }}
         sx={{
           fontSize: {
