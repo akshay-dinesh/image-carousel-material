@@ -1,7 +1,7 @@
-.arrow-buttons-container {
-  width: 25px;
-  height: 40px;
-  /* UI Properties */
-  background: #000000 0% 0% no-repeat padding-box;
-  opacity: 1;
+.gray-scale {
+  filter: grayscale(100%);
+}
+
+.gray-scale-off {
+  filter: none;
 }

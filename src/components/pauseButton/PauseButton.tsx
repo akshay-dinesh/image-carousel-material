@@ -1,15 +1,24 @@
 import PauseCircleFilledIcon from "@mui/icons-material/PauseCircleFilled";
 import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export const PauseButton = (props: any) => {
+// Typing props
+type BooleanProps = {
+  carouselPause: boolean;
+};
+
+export const PauseButton = (props: BooleanProps) => {
   const carouselPause = { ...props };
   const [buttonState, setButtonState] = useState(carouselPause.carouselPause);
 
   // Function to handle button state
   const pauseHandler = () => {
-    return setButtonState(!buttonState);
+    return setButtonState(!carouselPause.carouselPause);
   };
+
+  useEffect(() => {
+    pauseHandler();
+  }, [carouselPause.carouselPause]);
 
   // Object to store button details
   const button = {
@@ -37,5 +46,5 @@ export const PauseButton = (props: any) => {
     ),
   };
 
-  return <>{buttonState ? button.true : button.false}</>;
+  return <>{buttonState ? button.false : button.true}</>;
 };

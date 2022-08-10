@@ -1,6 +1,17 @@
 import { CardMedia } from "@mui/material";
 
-export const ImageBox = (props: any) => {
+// Typing props
+type ImageProps = {
+  currImage: {
+    description: string;
+    id: number;
+    status: boolean;
+    title: string;
+    img: string;
+  };
+};
+
+export const ImageBox = (props: ImageProps) => {
   const currImg = { ...props.currImage };
   return (
     <CardMedia
